@@ -9,15 +9,15 @@ const User = mongoose.model('User');
 var bcrypt = require('bcrypt');
 
 passport.use(new LocalStrategy({
-    usernameField: 'email',
+    usernameField: 'username',
     passwordField: 'password'
     }, 
-    async (email, password, cb) => {
+    async (username, password, cb) => {
     try{
         //this one is typically a DB call. Assume that the returned user object is pre-formatted and ready for storing in JWT
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ username });
         if (!user) {
-            return cb(null, false, {message: 'Incorrect email or password.'});
+            return cb(null, false, {message: 'Incorrect username or password.'});
         }else{
             if(bcrypt.compareSync(password, user.hash_password)){
                 return cb(null, user, {message: 'Logged in successfully'})
@@ -33,7 +33,7 @@ passport.use(new JWTStrategy({
   secretOrKey   : 'my_jwt_secret'
 }, function (jwtPayload, cb) {
   //find the user in db if needed. This functionality may be omitted if you store everything you'll need in JWT payload.
-  return User.findOne({ email: jwtPayload.email })
+  return User.findOne({ username: jwtPayload.username })
     .then(user => {
       return cb(null, user);
     })

@@ -13,17 +13,16 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/register', async (req, res, next) => {
-  console.log(req.body);
   if(!req.body){
     return res.status(400).json({ message: 'Data unusable'}); 
   }
-  const user = await User.findOne({email: req.body.email});
+  const user = await User.findOne({username: req.body.username});
   if(user){
-    return res.status(400).json({ message: 'Email already exists' });
+    return res.status(400).json({ message: 'Username already exists' });
   }else{
     
     const newUser = await new User({
-      email: req.body.email,
+      username: req.body.username,
       hash_password: req.body.password
     });
 
@@ -37,7 +36,7 @@ router.post('/register', async (req, res, next) => {
         newUser.hash_password = hash;
         newUser
         .save()
-        .then(user => res.json(user))
+        .then(user => res.status(200).json(user))
         .catch(err => console.log(err));
       });
     });
@@ -57,7 +56,7 @@ router.post('/login', (req, res, next) => {
             res.send(err);
         }
         const payload = {
-          email: user.email,
+          username: user.username,
           password: user.password
         };
         const token = jwt.sign(payload, 'my_jwt_secret');

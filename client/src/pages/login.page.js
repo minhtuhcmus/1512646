@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { login } from '../reducer/auth.reducer';
 import { Cookies } from 'react-cookie';
-
+import { Form, Button } from 'react-bootstrap'
 const LoginPage = ({ isLogin, loginUser, isAuthenticated, error }) => {
 
-  const [email, setEmail] = useState('');
+  const [username, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
-  const handleLogin = () => loginUser(email, password);
+  const handleLogin = () => loginUser(username, password);
 
   const history = useHistory();
   const cookies = new Cookies();  
@@ -21,7 +21,7 @@ const LoginPage = ({ isLogin, loginUser, isAuthenticated, error }) => {
       history.push('/')
       :
       (<div>
-        <input placeholder='Email' type='email' value={email} onChange={(e) => {
+        <input placeholder='Username' type='text' value={username} onChange={(e) => {
           setEmail(e.target.value);
         }}/>
         <input placeholder='Password' type='password' value={password} onChange={(e) => {          
@@ -42,7 +42,7 @@ const mapStateToProps = (state) => ({
 }); 
 
 const mapDispatchToProps = (dispatch) => ({
-  loginUser: (email, password) => dispatch(login(email, password))
+  loginUser: (username, password) => dispatch(login(username, password))
 });
 export default connect(
   mapStateToProps,

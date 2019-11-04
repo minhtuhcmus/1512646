@@ -28,10 +28,10 @@ const doLogout = () => ({
   }
 });
 
-const doLogin = (email, password) => ({
+const doLogin = (username, password) => ({
   type: LOGIN,
   payload:{
-    email,
+    username,
     password
   }
 })
@@ -50,10 +50,10 @@ const doLoginFail = message => ({
   }
 });
 
-const doRegister = (email, password) => ({
+const doRegister = (username, password) => ({
   type: REGISTER,
   payload:{
-    email,
+    username,
     password
   }
 })

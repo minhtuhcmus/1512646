@@ -3,20 +3,14 @@ import { connect } from 'react-redux';
 import { signup } from '../reducer/auth.reducer';
 const RegisterPage = ({ signupUser }) => {
 
-  const [email, setEmail] = useState('');
+  const [username, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const registerUser = async () => {
-    const res = await signupUser({email, password});
-    if (res){
-      console.log('user', res);
-    }
-  }
+  const registerUser = () => signupUser({username, password});
 
   return (
     <div>
-      
-      <input placeholder='Email' type='email' value={email} onChange={(e) => {
+      <input placeholder='Username' type='text' value={username} onChange={(e) => {
         setEmail(e.target.value);
       }}/>
       <input placeholder='Password' type='password' value={password} onChange={(e) => {          
@@ -27,8 +21,15 @@ const RegisterPage = ({ signupUser }) => {
   )
 }
 
+const mapStateToProps = (state) => ({
+
+});
+
 const mapDispatchToProps = (dispatch) => ({
   signupUser: (user) => dispatch(signup(user))
-})
+});
 
-export default connect(mapDispatchToProps)(RegisterPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RegisterPage);

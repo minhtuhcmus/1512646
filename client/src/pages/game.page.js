@@ -10,7 +10,6 @@ const GamePage = () => {
   
   const renderGamePage = () => {
     const curr_user = cookies.get('CURR_USER');
-    console.log(curr_user);
     if (curr_user){
       return <div>{curr_user.id}</div>
     }

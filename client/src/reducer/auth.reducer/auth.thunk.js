@@ -9,11 +9,13 @@ import { doRegister,
   doLoginFail,
   doLoginSuccess 
 } from './auth.action';
-export const login = (email, password) => async dispatch => {
+
+const cookies = new Cookies();
+
+export const login = (username, password) => async dispatch => {
   dispatch(doLogin());
-  const res = await authApi.login(email, password);
+  const res = await authApi.login(username, password);
   if(res.user){
-    const cookies = new Cookies();
     cookies.set('MY_TOKEN', res.token);
     cookies.set('CURR_USER', res.user);
     dispatch(doLoginSuccess(res.user)); 
@@ -27,6 +29,7 @@ export const signup = (user) => async dispatch => {
   dispatch(doRegister());
   const res = await authApi.signup(user);
   if(res.user){
+    cookies.set('CURR_USER', res.user)
     dispatch(doRegisterSuccess(res.user));
   }
   else{

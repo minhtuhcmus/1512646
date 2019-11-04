@@ -7,7 +7,7 @@ const AppRouter = () => {
     <Router>
       <Switch>
         <Route exact path="/login" component={LoginPage}/>
-        <Route exact path="/register" component={RegisterPage}/>
+        <Route exact path="/signup" component={RegisterPage}/>
         <Route exact path='/' component={GamePage}/>
       </Switch>
     </Router>
