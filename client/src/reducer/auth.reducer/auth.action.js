@@ -79,5 +79,6 @@ export {
   doClearResult,
   doLogin,
   doLoginFail,
-  doLoginSuccess
+  doLoginSuccess,
+  doLogout
 }

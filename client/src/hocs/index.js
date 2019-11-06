@@ -1,0 +1,1 @@
+export { default as UserOnly } from './userOnly.hoc';

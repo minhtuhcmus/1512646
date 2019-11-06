@@ -1,7 +1,6 @@
 import authAction from './auth.action';
 
 const INITIAL_STATE = {
-  isAuthenticated: false,
   isLogining  : false,
   user: undefined,
   token: undefined,
@@ -15,8 +14,7 @@ const applyRegister = (state, action) => ({
 });
 
 const applyLogout = (state, action) => ({
-  ...state,
-  isAuthenticated: false
+  ...state
 })
 
 const applyRegisterSuccess = (state, action) => ({
@@ -82,6 +80,10 @@ const reducer = (state = INITIAL_STATE, action) => {
 
     case authAction.LOGIN_FAIL: {
       return applyLoginFail(state, action);
+    }
+
+    case authAction.LOGOUT: {
+      return applyLogout(state, action);
     }
    
     default: return state;

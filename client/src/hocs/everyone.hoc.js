@@ -1,9 +1,9 @@
 import React from 'react';
 
-const everyone = (MyComponent) => {
+const Everyone = (MyComponent) => {
   return (
     <MyComponent/>
   )
 }
 
-export default everyone;
+export default Everyone;

@@ -60,7 +60,7 @@ router.post('/login', (req, res, next) => {
           password: user.password
         };
         const token = jwt.sign(payload, 'my_jwt_secret');
-        return res.status(200).json({ user:{ id: user.id, status: user.status }, token });
+        return res.status(200).json({ user:{ id: user.id, username: user.username, status: user.status }, token });
     });
 })
 (req, res);
