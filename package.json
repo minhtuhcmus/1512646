@@ -12,7 +12,7 @@
     "prod": "npm run client-build && npm run server"
   },
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "bootstrap": "^4.3.1",
     "concurrently": "^5.0.0",
     "cookie-parser": "~1.4.4",
